@@ -1,0 +1,66 @@
+﻿@model Order
+@{
+    ViewBag.Title = "OrderDetailAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OrderDetailAdd</h2>
+
+
+
+
+
+<style>
+    .genislik {
+        width: 300px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.ID)
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+
+                    Sipariş Detayı Ekleme Sayfası
+                </header>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">İsim</label>
+                        <div class="col-sm-10">
+                            @foreach (Product item in ViewBag.DetailList)
+                            {
+                                <!--
+                                     Burada Html helper kullanmamaya dikkat edin.. İkiser tane checkbox alıyor
+                                    -->
+
+                                <input type="checkbox" name="checkbox" value="@item.ID" /> @item.ProductName
+
+                            }
+
+                        </div>
+                    </div>
+                    <br /> <br />
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Ekle</label>
+                        <div class="col-sm-10">
+                            <button class="btn btn-primary">Sipaiş detayı ekle</button>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+}
+
+

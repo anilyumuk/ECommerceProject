@@ -1,0 +1,44 @@
+﻿@model List<Order>
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Sipariş eklemek icin @Html.ActionLink("Tıklayınız", "AddOrder")</h3>
+<div class="panel-body">
+    <div class="adv-table">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+                <tr>
+                    <th>Siparis İsmi</th>
+                    <th>Siparis Adresi</th>
+                    <th>Total Price</th>
+                    <th class="hidden-phone">Durum</th>
+                    <th class="hidden-phone">Sil</th>
+                    <th class="hidden-phone">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Order item in Model)
+                {
+                <tr class="gradeX">
+                    <td>@Html.ActionLink(item.UserName, "OrderList", "Order", new { id = item.ID }, null)</td>
+                    <td>
+                        @item.ShippedAddress
+                    </td>
+                    <td>
+                        @item.TotalPrice
+                    </td>
+                    <td class="hidden-phone">@item.Status</td>
+                    <td class="center hidden-phone">
+                        @Html.ActionLink("Sil", "DeleteOrder", new { id = item.ID }, new { @class = "btn btn-danger" })
+                    </td>
+                    <td class="center hidden-phone">@Html.ActionLink("Güncelle", "Update", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                </tr>
+            }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
